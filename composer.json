@@ -1,0 +1,91 @@
+{
+  "authors": [
+    {
+      "email": "tomaschochola@tomaschochola.cz",
+      "homepage": "https://github.com/tomaschochola",
+      "name": "Tomáš Chochola",
+      "role": "Author"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Src\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "./tests"
+    }
+  },
+  "config": {
+    "allow-plugins": false,
+    "audit": {
+      "abandoned": "fail"
+    },
+    "platform-check": true,
+    "process-timeout": 0,
+    "sort-packages": true
+  },
+  "description": "tomaschochola/php-template-mezzio",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tomaschochola"
+    }
+  ],
+  "homepage": "https://github.com/tomaschochola/php-template-mezzio",
+  "keywords": [
+    "tomaschochola",
+    "TomasChochola",
+    "Tomas Chochola",
+    "Tomáš Chochola",
+    "php-template-mezzio"
+  ],
+  "license": "CC-BY-ND-4.0",
+  "minimum-stability": "dev",
+  "name": "tomaschochola/php-template-mezzio",
+  "prefer-stable": true,
+  "readme": "./README.md",
+  "repositories": [
+    {
+      "no-api": true,
+      "type": "git",
+      "url": "https://github.com/tomaschochola/php-tooling-phpstan-config.git"
+    },
+    {
+      "no-api": true,
+      "type": "git",
+      "url": "https://github.com/tomaschochola/php-tooling-php-cs-fixer-config.git"
+    }
+  ],
+  "require": {
+    "ext-apcu": "*",
+    "ext-mbstring": "*",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-redis": "*",
+    "laminas/laminas-config-aggregator": "^1.19",
+    "laminas/laminas-diactoros": "^3.8",
+    "laminas/laminas-servicemanager": "^4.5",
+    "mezzio/mezzio": "^3.27",
+    "mezzio/mezzio-fastroute": "^3.14",
+    "php": "^8.5.0"
+  },
+  "require-dev": {
+    "ext-intl": "*",
+    "ext-pcntl": "*",
+    "ext-xdebug": "*",
+    "ext-zip": "*",
+    "phpunit/phpunit": "^12.5",
+    "roave/security-advisories": "dev-latest",
+    "tomaschochola/php-tooling-php-cs-fixer-config": "^1.0@dev",
+    "tomaschochola/php-tooling-phpstan-config": "^1.0@dev"
+  },
+  "support": {
+    "docs": "https://github.com/tomaschochola/php-template-mezzio",
+    "email": "tomaschochola@tomaschochola.cz",
+    "issues": "https://github.com/tomaschochola/php-template-mezzio/issues",
+    "source": "https://github.com/tomaschochola/php-template-mezzio.git"
+  },
+  "type": "project"
+}
