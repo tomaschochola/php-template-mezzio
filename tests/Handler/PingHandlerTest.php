@@ -18,20 +18,20 @@ namespace Tests\Handler;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\Test;
-use Src\Handler\PingHandler;
+use Src\Handler\PingRequestHandler;
 use Tests\TestCase;
 
 /**
  * @internal
  */
-#[CoversClass(PingHandler::class)]
+#[CoversClass(PingRequestHandler::class)]
 #[Small]
 final class PingHandlerTest extends TestCase
 {
     #[Test]
     public function test(): void
     {
-        $response = $this->handle($this->createServerRequest(PingHandler::METHOD, PingHandler::PATH));
+        $response = $this->handle($this->createServerRequest(PingRequestHandler::METHOD, PingRequestHandler::PATH));
 
         self::assertSame(200, $response->getStatusCode());
     }

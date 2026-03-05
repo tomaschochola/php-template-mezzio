@@ -20,7 +20,7 @@ use Src\Database\Migrations;
 use Src\Database\Migrator;
 use Src\Database\PdoConfig;
 use Src\Database\PdoConfigInterface;
-use Src\Handler\PingHandler;
+use Src\Handler\PingRequestHandler;
 use Src\Migration\CreateUsersTableMigration;
 use Src\Provider\PdoProvider;
 
@@ -48,7 +48,7 @@ final readonly class ConfigProvider
                 Migrator::class => Migrator::class . '::provide',
                 PDO::class => PdoProvider::class . '::provide',
                 PdoConfigInterface::class => PdoConfig::class . '::provide',
-                PingHandler::class => PingHandler::class . '::provide',
+                PingRequestHandler::class => PingRequestHandler::class . '::provide',
             ],
         ];
     }

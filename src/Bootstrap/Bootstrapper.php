@@ -32,7 +32,7 @@ use Mezzio\Router\Middleware\DispatchMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
 use Psr\Container\ContainerInterface;
-use Src\Handler\PingHandler;
+use Src\Handler\PingRequestHandler;
 
 use function assert;
 use function getenv;
@@ -130,6 +130,6 @@ final readonly class Bootstrapper
 
     private static function routes(Application $app, MiddlewareFactory $factory, ContainerInterface $container): void
     {
-        $app->route(PingHandler::PATH, [PingHandler::class], [PingHandler::METHOD]);
+        $app->route(PingRequestHandler::PATH, [PingRequestHandler::class], [PingRequestHandler::METHOD]);
     }
 }

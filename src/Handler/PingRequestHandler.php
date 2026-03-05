@@ -25,7 +25,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 use function assert;
 
-final readonly class PingHandler implements RequestHandlerInterface
+final readonly class PingRequestHandler implements RequestHandlerInterface
 {
     public const string METHOD = RequestMethodInterface::METHOD_GET;
 
