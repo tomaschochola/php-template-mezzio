@@ -38,7 +38,7 @@ final readonly class PingRequestHandler implements RequestHandlerInterface
         $this->factory = $factory;
     }
 
-    public static function provide(ContainerInterface $container): self
+    public static function unload(ContainerInterface $container): self
     {
         $factory = $container->get(ResponseFactoryInterface::class);
 

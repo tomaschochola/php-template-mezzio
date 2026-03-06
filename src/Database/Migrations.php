@@ -35,7 +35,7 @@ final readonly class Migrations implements IteratorAggregate
         $this->container = $container;
     }
 
-    public static function provide(ContainerInterface $container): self
+    public static function unload(ContainerInterface $container): self
     {
         return new self($container);
     }

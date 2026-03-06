@@ -25,7 +25,7 @@ use function is_array;
 use function is_string;
 use function mb_trim;
 
-final readonly class PdoConfig implements PdoConfigInterface
+final readonly class PdoSettings implements PdoSettingsInterface
 {
     #[Override]
     public readonly string $dbname;
@@ -65,7 +65,7 @@ final readonly class PdoConfig implements PdoConfigInterface
         $this->options = $options;
     }
 
-    public static function provide(ContainerInterface $container): self
+    public static function unload(ContainerInterface $container): self
     {
         $config = $container->get('config');
 

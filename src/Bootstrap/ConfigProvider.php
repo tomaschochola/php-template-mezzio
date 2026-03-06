@@ -18,11 +18,11 @@ namespace Src\Bootstrap;
 use PDO;
 use Src\Database\Migrations;
 use Src\Database\Migrator;
-use Src\Database\PdoConfig;
-use Src\Database\PdoConfigInterface;
+use Src\Database\PdoSettings;
+use Src\Database\PdoSettingsInterface;
 use Src\Handler\PingRequestHandler;
 use Src\Migration\CreateUsersTableMigration;
-use Src\Provider\PdoProvider;
+use Src\Provider\PdoForge;
 
 final readonly class ConfigProvider
 {
@@ -43,12 +43,12 @@ final readonly class ConfigProvider
     {
         return [
             'factories' => [
-                CreateUsersTableMigration::class => CreateUsersTableMigration::class . '::provide',
-                Migrations::class => Migrations::class . '::provide',
-                Migrator::class => Migrator::class . '::provide',
-                PDO::class => PdoProvider::class . '::provide',
-                PdoConfigInterface::class => PdoConfig::class . '::provide',
-                PingRequestHandler::class => PingRequestHandler::class . '::provide',
+                CreateUsersTableMigration::class => [CreateUsersTableMigration::class, 'unload'],
+                Migrations::class => [Migrations::class, 'unload'],
+                Migrator::class => [Migrator::class, 'unload'],
+                PDO::class => [PdoForge::class, 'produce'],
+                PdoSettingsInterface::class => [PdoSettings::class, 'unload'],
+                PingRequestHandler::class => [PingRequestHandler::class, 'unload'],
             ],
         ];
     }

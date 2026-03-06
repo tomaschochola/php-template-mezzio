@@ -31,7 +31,7 @@ final readonly class Migrator
         $this->pdo = $pdo;
     }
 
-    public static function provide(ContainerInterface $container): self
+    public static function unload(ContainerInterface $container): self
     {
         $pdo = $container->get(PDO::class);
 

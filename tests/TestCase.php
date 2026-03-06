@@ -29,7 +29,7 @@ use Src\Bootstrap\Bootstrapper;
 use Src\Bootstrap\Kernel;
 use Src\Database\Migrations;
 use Src\Database\Migrator;
-use Src\Database\PdoConfigInterface;
+use Src\Database\PdoSettingsInterface;
 
 use function assert;
 use function implode;
@@ -88,9 +88,9 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
         $pdo->exec("CREATE DATABASE IF NOT EXISTS `{$this->id}` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci");
 
         $container = $this->container();
-        $config = $container->get(PdoConfigInterface::class);
+        $config = $container->get(PdoSettingsInterface::class);
 
-        assert($config instanceof PdoConfigInterface);
+        assert($config instanceof PdoSettingsInterface);
 
         $override = $config->clone([
             'dbname' => $this->id,
@@ -98,7 +98,7 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
 
         $container->setAllowOverride(true);
         $container->setService(PDO::class, null);
-        $container->setService(PdoConfigInterface::class, $override);
+        $container->setService(PdoSettingsInterface::class, $override);
         $container->setAllowOverride(false);
 
         $this->resolve(Migrator::class)->forward($this->resolve(Migrations::class));

@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace Src\Database;
 
-interface PdoConfigInterface
+interface PdoSettingsInterface
 {
     public string $dbname { get; }
 
