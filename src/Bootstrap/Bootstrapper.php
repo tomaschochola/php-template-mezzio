@@ -61,7 +61,7 @@ final readonly class Bootstrapper
     }
 
     /**
-     * @return array<int|string, mixed>
+     * @return array<mixed, mixed>
      */
     private static function cached(): array
     {
@@ -81,7 +81,7 @@ final readonly class Bootstrapper
     }
 
     /**
-     * @return array<int|string, mixed>
+     * @return array<mixed, mixed>
      */
     private static function config(): array
     {

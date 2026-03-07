@@ -34,7 +34,7 @@ final readonly class PdoSettings implements PdoSettingsInterface
     public readonly string $host;
 
     /**
-     * @var array<int|string, mixed>
+     * @var array<mixed, mixed>
      */
     #[Override]
     public readonly array $options;
@@ -52,7 +52,7 @@ final readonly class PdoSettings implements PdoSettingsInterface
     public readonly string $username;
 
     /**
-     * @param array<int|string, mixed> $options
+     * @param array<mixed, mixed> $options
      */
     public function __construct(string $host, string $port, string $dbname, string $socket, string $username, string $password, array $options)
     {

@@ -20,7 +20,7 @@ interface MigrationInterface
     public function selector(): string;
 
     /**
-     * @return iterable<int|string, string>
+     * @return iterable<mixed, string>
      */
     public function up(): iterable;
 }

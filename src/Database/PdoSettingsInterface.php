@@ -22,7 +22,7 @@ interface PdoSettingsInterface
     public string $host { get; }
 
     /**
-     * @var array<int|string, mixed>
+     * @var array<mixed, mixed>
      */
     public array $options { get; }
 
@@ -35,7 +35,7 @@ interface PdoSettingsInterface
     public string $username { get; }
 
     /**
-     * @param array<int|string, mixed> $with
+     * @param array<mixed, mixed> $with
      */
     public function clone(array $with): static;
 }

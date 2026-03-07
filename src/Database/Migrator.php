@@ -41,7 +41,7 @@ final readonly class Migrator
     }
 
     /**
-     * @param iterable<int|string, MigrationInterface> $migrations
+     * @param iterable<mixed, MigrationInterface> $migrations
      */
     public function forward(iterable $migrations): void
     {

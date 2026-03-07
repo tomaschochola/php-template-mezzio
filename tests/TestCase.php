@@ -57,7 +57,7 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
     }
 
     /**
-     * @param array<int|string, mixed> $params
+     * @param array<mixed, mixed> $params
      */
     protected function createServerRequest(string $method, UriInterface|string $uri, array $params = []): ServerRequestInterface
     {

@@ -24,7 +24,7 @@ use Traversable;
 use function assert;
 
 /**
- * @implements IteratorAggregate<int|string, MigrationInterface>
+ * @implements IteratorAggregate<mixed, MigrationInterface>
  */
 final readonly class Migrations implements IteratorAggregate
 {
@@ -53,7 +53,7 @@ final readonly class Migrations implements IteratorAggregate
     }
 
     /**
-     * @return iterable<int|string, class-string<MigrationInterface>>
+     * @return iterable<mixed, class-string<MigrationInterface>>
      */
     private static function migrations(): iterable
     {

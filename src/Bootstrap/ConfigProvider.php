@@ -27,7 +27,7 @@ use Src\Provider\PdoForge;
 final readonly class ConfigProvider
 {
     /**
-     * @return array<int|string, mixed>
+     * @return array<mixed, mixed>
      */
     public function __invoke(): array
     {
@@ -37,7 +37,7 @@ final readonly class ConfigProvider
     }
 
     /**
-     * @return array<int|string, mixed>
+     * @return array<mixed, mixed>
      */
     public function getDependencies(): array
     {

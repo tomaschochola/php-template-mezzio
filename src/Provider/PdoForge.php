@@ -27,11 +27,16 @@ use function implode;
 
 final readonly class PdoForge
 {
-    protected readonly PdoSettingsInterface $config;
+    private readonly PdoSettingsInterface $config;
 
     public function __construct(PdoSettingsInterface $config)
     {
         $this->config = $config;
+    }
+
+    public static function produce(ContainerInterface $container): PDO
+    {
+        return self::unload($container)->create();
     }
 
     public static function unload(ContainerInterface $container): self
@@ -41,11 +46,6 @@ final readonly class PdoForge
         assert($config instanceof PdoSettingsInterface);
 
         return new self($config);
-    }
-
-    public static function produce(ContainerInterface $container): PDO
-    {
-        return static::unload($container)->create();
     }
 
     public function create(): PDO
