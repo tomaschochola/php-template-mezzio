@@ -33,9 +33,6 @@ final readonly class PdoSettings implements PdoSettingsInterface
     #[Override]
     public readonly string $host;
 
-    /**
-     * @var array<mixed, mixed>
-     */
     #[Override]
     public readonly array $options;
 
