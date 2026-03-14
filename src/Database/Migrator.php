@@ -17,27 +17,17 @@ namespace Src\Database;
 
 use PDO;
 use PDOStatement;
-use Psr\Container\ContainerInterface;
 use UnexpectedValueException;
 
 use function assert;
 
-final readonly class Migrator
+readonly class Migrator
 {
     private readonly PDO $pdo;
 
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
-    }
-
-    public static function unload(ContainerInterface $container): self
-    {
-        $pdo = $container->get(PDO::class);
-
-        assert($pdo instanceof PDO);
-
-        return new self($pdo);
     }
 
     /**

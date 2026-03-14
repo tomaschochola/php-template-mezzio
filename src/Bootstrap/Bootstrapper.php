@@ -39,7 +39,7 @@ use function getenv;
 use function is_array;
 use function is_string;
 
-final readonly class Bootstrapper
+readonly class Bootstrapper
 {
     public static function bootstrap(): Kernel
     {
@@ -92,7 +92,7 @@ final readonly class Bootstrapper
         }
 
         $config = (new ConfigAggregator([
-            ConfigProvider::class,
+            ConfigManifest::class,
             LaminasDiactorosConfigProvider::class,
             MezioConfigProvider::class,
             MezzioRouterConfigProvider::class,

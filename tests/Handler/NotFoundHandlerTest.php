@@ -25,7 +25,7 @@ use Tests\TestCase;
  */
 #[CoversNothing]
 #[Small]
-final class NotFoundHandlerTest extends TestCase
+class NotFoundHandlerTest extends TestCase
 {
     #[Test]
     public function test(): void

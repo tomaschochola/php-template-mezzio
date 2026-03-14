@@ -17,15 +17,12 @@ namespace Src\Handler;
 
 use Fig\Http\Message\RequestMethodInterface;
 use Override;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-use function assert;
-
-final readonly class PingRequestHandler implements RequestHandlerInterface
+readonly class PingRequestHandler implements RequestHandlerInterface
 {
     public const string METHOD = RequestMethodInterface::METHOD_GET;
 
@@ -36,15 +33,6 @@ final readonly class PingRequestHandler implements RequestHandlerInterface
     public function __construct(ResponseFactoryInterface $factory)
     {
         $this->factory = $factory;
-    }
-
-    public static function unload(ContainerInterface $container): self
-    {
-        $factory = $container->get(ResponseFactoryInterface::class);
-
-        assert($factory instanceof ResponseFactoryInterface);
-
-        return new self($factory);
     }
 
     #[Override]

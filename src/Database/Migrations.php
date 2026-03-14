@@ -26,18 +26,13 @@ use function assert;
 /**
  * @implements IteratorAggregate<mixed, MigrationInterface>
  */
-final readonly class Migrations implements IteratorAggregate
+readonly class Migrations implements IteratorAggregate
 {
     private readonly ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-    }
-
-    public static function unload(ContainerInterface $container): self
-    {
-        return new self($container);
     }
 
     #[Override]

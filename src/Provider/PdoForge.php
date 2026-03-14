@@ -22,10 +22,9 @@ use Src\Database\PdoSettingsInterface;
 
 use function array_filter;
 use function array_replace;
-use function assert;
 use function implode;
 
-final readonly class PdoForge
+readonly class PdoForge
 {
     private readonly PdoSettingsInterface $config;
 
@@ -36,16 +35,7 @@ final readonly class PdoForge
 
     public static function produce(ContainerInterface $container): PDO
     {
-        return self::unload($container)->create();
-    }
-
-    public static function unload(ContainerInterface $container): self
-    {
-        $config = $container->get(PdoSettingsInterface::class);
-
-        assert($config instanceof PdoSettingsInterface);
-
-        return new self($config);
+        return PdoForgeAssembler::assemble($container)->create();
     }
 
     public function create(): PDO

@@ -16,17 +16,11 @@ declare(strict_types=1);
 namespace Src\Migration;
 
 use Override;
-use Psr\Container\ContainerInterface;
 use Src\Database\MigrationInterface;
 
-final readonly class CreateUsersTableMigration implements MigrationInterface
+readonly class CreateUsersTableMigration implements MigrationInterface
 {
     public function __construct() {}
-
-    public static function unload(ContainerInterface $container): self
-    {
-        return new self();
-    }
 
     #[Override]
     public function selector(): string
