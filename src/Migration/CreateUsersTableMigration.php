@@ -15,11 +15,19 @@ declare(strict_types=1);
 
 namespace Src\Migration;
 
+use NoDiscard;
 use Override;
+use Psr\Container\ContainerInterface;
 use Src\Database\MigrationInterface;
 
 readonly class CreateUsersTableMigration implements MigrationInterface
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        return new self();
+    }
+
     public function __construct() {}
 
     #[Override]

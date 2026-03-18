@@ -15,14 +15,26 @@ declare(strict_types=1);
 
 namespace Src\Database;
 
+use NoDiscard;
 use PDO;
 use PDOStatement;
+use Psr\Container\ContainerInterface;
 use UnexpectedValueException;
 
 use function assert;
 
 readonly class Migrator
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        $pdo = $container->get(PDO::class);
+
+        assert($pdo instanceof PDO);
+
+        return new self($pdo);
+    }
+
     private readonly PDO $pdo;
 
     public function __construct(PDO $pdo)

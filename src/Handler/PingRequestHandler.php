@@ -16,14 +16,28 @@ declare(strict_types=1);
 namespace Src\Handler;
 
 use Fig\Http\Message\RequestMethodInterface;
+use NoDiscard;
 use Override;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function assert;
+
 readonly class PingRequestHandler implements RequestHandlerInterface
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        $factory = $container->get(ResponseFactoryInterface::class);
+
+        assert($factory instanceof ResponseFactoryInterface);
+
+        return new self($factory);
+    }
+
     public const string METHOD = RequestMethodInterface::METHOD_GET;
 
     public const string PATH = '/healthz/live';

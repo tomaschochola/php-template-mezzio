@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace Src\Provider;
 
+use NoDiscard;
 use PDO;
 use Pdo\Mysql;
 use Psr\Container\ContainerInterface;
@@ -22,10 +23,21 @@ use Src\Database\PdoSettingsInterface;
 
 use function array_filter;
 use function array_replace;
+use function assert;
 use function implode;
 
 readonly class PdoForge
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        $config = $container->get(PdoSettingsInterface::class);
+
+        assert($config instanceof PdoSettingsInterface);
+
+        return new self($config);
+    }
+
     private readonly PdoSettingsInterface $config;
 
     public function __construct(PdoSettingsInterface $config)
@@ -35,7 +47,7 @@ readonly class PdoForge
 
     public static function produce(ContainerInterface $container): PDO
     {
-        return PdoForgeAssembler::assemble($container)->create();
+        return self::inject($container)->create();
     }
 
     public function create(): PDO

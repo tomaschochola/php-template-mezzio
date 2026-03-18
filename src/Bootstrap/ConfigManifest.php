@@ -17,16 +17,11 @@ namespace Src\Bootstrap;
 
 use PDO;
 use Src\Database\Migrations;
-use Src\Database\MigrationsAssembler;
 use Src\Database\Migrator;
-use Src\Database\MigratorAssembler;
 use Src\Database\PdoSettings;
-use Src\Database\PdoSettingsAssembler;
 use Src\Database\PdoSettingsInterface;
 use Src\Handler\PingRequestHandler;
-use Src\Handler\PingRequestHandlerAssembler;
 use Src\Migration\CreateUsersTableMigration;
-use Src\Migration\CreateUsersTableMigrationAssembler;
 use Src\Provider\PdoForge;
 
 readonly class ConfigManifest
@@ -48,13 +43,13 @@ readonly class ConfigManifest
     {
         return [
             'factories' => [
-                CreateUsersTableMigration::class => [CreateUsersTableMigrationAssembler::class, 'assemble'],
-                Migrations::class => [MigrationsAssembler::class, 'assemble'],
-                Migrator::class => [MigratorAssembler::class, 'assemble'],
+                CreateUsersTableMigration::class => [CreateUsersTableMigration::class, 'inject'],
+                Migrations::class => [Migrations::class, 'inject'],
+                Migrator::class => [Migrator::class, 'inject'],
                 PDO::class => [PdoForge::class, 'produce'],
-                PdoSettings::class => [PdoSettingsAssembler::class, 'assemble'],
-                PdoSettingsInterface::class => [PdoSettingsAssembler::class, 'assemble'],
-                PingRequestHandler::class => [PingRequestHandlerAssembler::class, 'assemble'],
+                PdoSettings::class => [PdoSettings::class, 'inject'],
+                PdoSettingsInterface::class => [PdoSettings::class, 'inject'],
+                PingRequestHandler::class => [PingRequestHandler::class, 'inject'],
             ],
         ];
     }

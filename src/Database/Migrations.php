@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace Src\Database;
 
 use IteratorAggregate;
+use NoDiscard;
 use Override;
 use Psr\Container\ContainerInterface;
 use Src\Migration\CreateUsersTableMigration;
@@ -28,6 +29,12 @@ use function assert;
  */
 readonly class Migrations implements IteratorAggregate
 {
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        return new self($container);
+    }
+
     private readonly ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
