@@ -26,8 +26,15 @@ use function array_replace;
 use function assert;
 use function implode;
 
-readonly class PdoForge
+final readonly class PdoForge
 {
+    private readonly PdoSettingsInterface $config;
+
+    public function __construct(PdoSettingsInterface $config)
+    {
+        $this->config = $config;
+    }
+
     #[NoDiscard]
     public static function inject(ContainerInterface $container): self
     {
@@ -36,13 +43,6 @@ readonly class PdoForge
         assert($config instanceof PdoSettingsInterface);
 
         return new self($config);
-    }
-
-    private readonly PdoSettingsInterface $config;
-
-    public function __construct(PdoSettingsInterface $config)
-    {
-        $this->config = $config;
     }
 
     public static function produce(ContainerInterface $container): PDO

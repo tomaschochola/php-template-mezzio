@@ -26,7 +26,7 @@ use Tests\TestCase;
  */
 #[CoversClass(PingRequestHandler::class)]
 #[Small]
-class PingHandlerTest extends TestCase
+final class PingHandlerTest extends TestCase
 {
     #[Test]
     public function test(): void

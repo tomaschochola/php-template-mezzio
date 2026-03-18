@@ -20,15 +20,15 @@ use Override;
 use Psr\Container\ContainerInterface;
 use Src\Database\MigrationInterface;
 
-readonly class CreateUsersTableMigration implements MigrationInterface
+final readonly class CreateUsersTableMigration implements MigrationInterface
 {
+    public function __construct() {}
+
     #[NoDiscard]
     public static function inject(ContainerInterface $container): self
     {
         return new self();
     }
-
-    public function __construct() {}
 
     #[Override]
     public function selector(): string

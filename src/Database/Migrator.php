@@ -23,8 +23,15 @@ use UnexpectedValueException;
 
 use function assert;
 
-readonly class Migrator
+final readonly class Migrator
 {
+    private readonly PDO $pdo;
+
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
     #[NoDiscard]
     public static function inject(ContainerInterface $container): self
     {
@@ -33,13 +40,6 @@ readonly class Migrator
         assert($pdo instanceof PDO);
 
         return new self($pdo);
-    }
-
-    private readonly PDO $pdo;
-
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
     }
 
     /**

@@ -17,7 +17,7 @@ namespace Src;
 
 use Src\Bootstrap\Bootstrapper;
 
-readonly class Main
+final readonly class Main
 {
     public function __invoke(): void
     {

@@ -26,18 +26,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 use function assert;
 
-readonly class PingRequestHandler implements RequestHandlerInterface
+final readonly class PingRequestHandler implements RequestHandlerInterface
 {
-    #[NoDiscard]
-    public static function inject(ContainerInterface $container): self
-    {
-        $factory = $container->get(ResponseFactoryInterface::class);
-
-        assert($factory instanceof ResponseFactoryInterface);
-
-        return new self($factory);
-    }
-
     public const string METHOD = RequestMethodInterface::METHOD_GET;
 
     public const string PATH = '/healthz/live';
@@ -47,6 +37,16 @@ readonly class PingRequestHandler implements RequestHandlerInterface
     public function __construct(ResponseFactoryInterface $factory)
     {
         $this->factory = $factory;
+    }
+
+    #[NoDiscard]
+    public static function inject(ContainerInterface $container): self
+    {
+        $factory = $container->get(ResponseFactoryInterface::class);
+
+        assert($factory instanceof ResponseFactoryInterface);
+
+        return new self($factory);
     }
 
     #[Override]

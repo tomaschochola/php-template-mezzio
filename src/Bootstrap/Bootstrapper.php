@@ -39,7 +39,7 @@ use function getenv;
 use function is_array;
 use function is_string;
 
-readonly class Bootstrapper
+final readonly class Bootstrapper
 {
     public static function bootstrap(): Kernel
     {
