@@ -32,6 +32,6 @@ final class NotFoundHandlerTest extends TestCase
     {
         $response = $this->handle($this->createServerRequest('GET', '/not-found'));
 
-        self::assertSame(404, $response->getStatusCode());
+        $this->assertSame(404, $response->getStatusCode());
     }
 }

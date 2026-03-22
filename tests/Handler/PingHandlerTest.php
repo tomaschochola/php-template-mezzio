@@ -33,6 +33,6 @@ final class PingHandlerTest extends TestCase
     {
         $response = $this->handle($this->createServerRequest(PingRequestHandler::METHOD, PingRequestHandler::PATH));
 
-        self::assertSame(200, $response->getStatusCode());
+        $this->assertSame(200, $response->getStatusCode());
     }
 }
