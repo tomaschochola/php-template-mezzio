@@ -15,6 +15,9 @@ declare(strict_types=1);
 
 namespace Src\Database;
 
+/**
+ * @no-named-arguments
+ */
 interface PdoSettingsInterface
 {
     public string $dbname { get; }

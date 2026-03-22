@@ -23,6 +23,7 @@ use Tests\TestCase;
 
 /**
  * @internal
+ * @no-named-arguments
  */
 #[CoversClass(PingRequestHandler::class)]
 #[Small]

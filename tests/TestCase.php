@@ -37,6 +37,7 @@ use function range;
 
 /**
  * @internal
+ * @no-named-arguments
  */
 abstract class TestCase extends PHPUnitFrameworkTestCase
 {

@@ -24,6 +24,9 @@ use Src\Handler\PingRequestHandler;
 use Src\Migration\CreateUsersTableMigration;
 use Src\Provider\PdoForge;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class ConfigManifest
 {
     /**

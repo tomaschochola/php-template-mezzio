@@ -22,6 +22,7 @@ use Tests\TestCase;
 
 /**
  * @internal
+ * @no-named-arguments
  */
 #[CoversNothing]
 #[Small]

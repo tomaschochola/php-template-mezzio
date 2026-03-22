@@ -26,6 +26,9 @@ use function array_replace;
 use function assert;
 use function implode;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class PdoForge
 {
     private readonly PdoSettingsInterface $config;

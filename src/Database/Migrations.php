@@ -26,6 +26,7 @@ use function assert;
 
 /**
  * @implements IteratorAggregate<mixed, MigrationInterface>
+ * @no-named-arguments
  */
 final readonly class Migrations implements IteratorAggregate
 {

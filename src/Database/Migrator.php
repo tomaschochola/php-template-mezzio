@@ -23,6 +23,9 @@ use UnexpectedValueException;
 
 use function assert;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class Migrator
 {
     private readonly PDO $pdo;

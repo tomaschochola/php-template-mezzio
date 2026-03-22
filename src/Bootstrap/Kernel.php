@@ -18,6 +18,9 @@ namespace Src\Bootstrap;
 use Laminas\ServiceManager\ServiceManager;
 use Mezzio\Application;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class Kernel
 {
     public readonly Application $app;

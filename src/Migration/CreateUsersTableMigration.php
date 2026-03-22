@@ -20,6 +20,9 @@ use Override;
 use Psr\Container\ContainerInterface;
 use Src\Database\MigrationInterface;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class CreateUsersTableMigration implements MigrationInterface
 {
     public function __construct() {}

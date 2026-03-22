@@ -25,6 +25,9 @@ use function opcache_is_script_cached;
 
 use const PHP_SAPI;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class ApcuConfigCache
 {
     /**

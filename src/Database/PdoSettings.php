@@ -26,6 +26,9 @@ use function is_array;
 use function is_string;
 use function mb_trim;
 
+/**
+ * @no-named-arguments
+ */
 final readonly class PdoSettings implements PdoSettingsInterface
 {
     #[Override]
