@@ -102,14 +102,14 @@ final readonly class Migrator
 
     private function init(): void
     {
-        $this->execute(<<<'EOF'
+        $this->execute(<<<'SQL'
             CREATE TABLE IF NOT EXISTS `migrations` (
               `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
               `selector` VARCHAR(255) NOT NULL UNIQUE,
               `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
               `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-            EOF);
+            SQL);
     }
 
     private function lock(): void
