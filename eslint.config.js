@@ -10,16 +10,10 @@
  * @see {@link https://github.com/sponsors/tomaschochola} GitHub Sponsors
  */
 
-import { EslintConfig } from '@tomaschochola/ts-tooling-eslint-config';
+import { ESLintConfig } from '@tomaschochola/ts-tooling-eslint-config';
 
 // eslint-disable-next-line no-restricted-exports
-export default EslintConfig.compose(
-  EslintConfig.base(),
-  EslintConfig.globalsRc(),
-  EslintConfig.globalsNode(),
-  EslintConfig.ignores(),
-  EslintConfig.ignores(['node_modules', 'vendor', '.phpunit.cache', '.phpunit.coverage', '.phpunit.result.cache', '.php-cs-fixer.cache']),
-  EslintConfig.recommended(),
-  EslintConfig.stylistic(),
-  EslintConfig.sonarjs(),
+export default ESLintConfig.composeConfig(
+  ESLintConfig.presetNode({ presetDefaultsOptions: { configNodeModulesIgnores: false } }),
+  ESLintConfig.configIgnores(['node_modules', 'vendor', '.phpunit.cache', '.phpunit.coverage', '.phpunit.result.cache', '.php-cs-fixer.cache']),
 );

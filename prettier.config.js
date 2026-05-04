@@ -13,9 +13,9 @@
 import { PrettierConfig } from '@tomaschochola/ts-tooling-prettier-config';
 
 // eslint-disable-next-line no-restricted-exports
-export default PrettierConfig.compose(
-  PrettierConfig.base(),
-  PrettierConfig.pug(),
-  PrettierConfig.ruby(),
-  PrettierConfig.xml(),
+export default PrettierConfig.composeConfig(
+  PrettierConfig.configBase(),
+  PrettierConfig.pluginPug(),
+  PrettierConfig.pluginRuby(),
+  PrettierConfig.pluginXml(),
 );
