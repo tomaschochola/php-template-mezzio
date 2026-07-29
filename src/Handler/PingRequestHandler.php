@@ -35,14 +35,14 @@ final readonly class PingRequestHandler implements RequestHandlerInterface
 
     public const string PATH = '/healthz/live';
 
-    private readonly ResponseFactoryInterface $factory;
+    private ResponseFactoryInterface $factory;
 
     public function __construct(ResponseFactoryInterface $factory)
     {
         $this->factory = $factory;
     }
 
-    #[NoDiscard]
+    #[NoDiscard()]
     public static function inject(ContainerInterface $container): self
     {
         $factory = $container->get(ResponseFactoryInterface::class);
@@ -52,7 +52,7 @@ final readonly class PingRequestHandler implements RequestHandlerInterface
         return new self($factory);
     }
 
-    #[Override]
+    #[Override()]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         return $this->factory->createResponse();

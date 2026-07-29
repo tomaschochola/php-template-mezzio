@@ -20,7 +20,7 @@ return (new ConfigAggregator([
     new ArrayProvider([
         'APP_ENV' => \getenv('APP_ENV'),
         'debug' => false,
-        PDO::class => [
+        \PDO::class => [
             'dbname' => \getenv('MYSQL_DATABASE'),
             'host' => \getenv('MYSQL_HOST'),
             'options' => [],

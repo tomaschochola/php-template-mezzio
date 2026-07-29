@@ -23,9 +23,9 @@ use Mezzio\Application;
  */
 final readonly class Kernel
 {
-    public readonly Application $app;
+    public Application $app;
 
-    public readonly ServiceManager $container;
+    public ServiceManager $container;
 
     public function __construct(Application $app, ServiceManager $container)
     {

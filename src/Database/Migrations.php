@@ -26,24 +26,25 @@ use function assert;
 
 /**
  * @implements IteratorAggregate<mixed, MigrationInterface>
+ *
  * @no-named-arguments
  */
 final readonly class Migrations implements IteratorAggregate
 {
-    private readonly ContainerInterface $container;
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
-    #[NoDiscard]
+    #[NoDiscard()]
     public static function inject(ContainerInterface $container): self
     {
         return new self($container);
     }
 
-    #[Override]
+    #[Override()]
     public function getIterator(): Traversable
     {
         foreach (self::migrations() as $class) {

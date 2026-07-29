@@ -50,7 +50,6 @@ final readonly class Bootstrapper
          * @phpstan-ignore-next-line argument.type
          */
         $container = new ServiceManager(self::cached());
-
         $app = $container->get(Application::class);
         $factory = $container->get(MiddlewareFactory::class);
 
@@ -69,7 +68,6 @@ final readonly class Bootstrapper
     private static function cached(): array
     {
         $cache = new ApcuConfigCache();
-
         $cached = $cache->get();
 
         if ($cached !== null) {

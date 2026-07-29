@@ -22,7 +22,3 @@
 
 # php-cs-fixer
 /.php-cs-fixer.cache
-
-# temporary
-/composer.lock
-/package-lock.json

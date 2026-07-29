@@ -1,44 +1,68 @@
-# Default shell
-SHELL := /bin/bash
+# Makefile
+
+SHELL := /usr/bin/env bash
+
+GNUMAKEFLAGS ?=
+
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+MAKEFLAGS += --no-builtin-variables
+
+.SHELLFLAGS := -Eeuo pipefail -c
+
+.DELETE_ON_ERROR:
+.SUFFIXES:
+.NOTPARALLEL:
+
+DEVCONTAINER_PROJECT := php-template-mezzio-devcontainer
+DEVCONTAINER_FILTER := label=com.docker.compose.project=$(DEVCONTAINER_PROJECT)
 
 # Default goal
+
 .DEFAULT_GOAL := never
 
+.PHONY: never
+.SILENT: never
+never:
+	printf '%s\n' 'No default target. Run an explicit target' >&2
+	exit 1
+
 # Options
-export DEBIAN_FRONTEND := noninteractive
-export PHP_CS_FIXER_FUTURE_MODE=1
+
+export PHP_CS_FIXER_FUTURE_MODE := 1
 
 # Goals
-.PHONY: commit
-commit: distclean update fix check
 
 .PHONY: fix
-fix: fix_eslint fix_prettier fix_php_cs_fixer fix_yaml
+fix: eslint_fix prettier_fix php_cs_fixer_fix
 
 .PHONY: check
-check: lint stan test audit
+check: lint static test audit
 
 .PHONY: lint
-lint: lint_eslint lint_prettier lint_php_cs_fixer
+lint: eslint_check prettier_check php_cs_fixer_check
 
-.PHONY: stan
-stan: stan_phpstan
+.PHONY: static
+static: phpstan_check composer_autoload_check
 
 .PHONY: test
-test: test_phpunit
+test: phpunit_test
 
 .PHONY: coverage
 coverage: ./.phpunit.coverage/html
+
+.PHONY: coverage_serve
+coverage_serve: coverage
 	php -S 0.0.0.0:8000 -t ./.phpunit.coverage/html
 
 .PHONY: audit
-audit: audit_npm audit_composer
+audit: npm_audit composer_audit
 
-.PHONY: install
-install: install_npm install_composer
+.PHONY: deps_install
+deps_install: npm_install composer_install
 
-.PHONY: update
-update: update_npm update_composer
+.PHONY: deps_update
+deps_update: npm_update composer_update
 
 .PHONY: clean
 clean:
@@ -46,84 +70,86 @@ clean:
 	rm -rf ./.phpunit.cache
 	rm -rf ./.phpunit.coverage
 	rm -rf ./.phpunit.result.cache
+
+.PHONY: deps_clean
+deps_clean:
 	rm -rf ./node_modules
 	rm -rf ./vendor
 
 .PHONY: distclean
-distclean: clean
-	git clean -Xfd
+distclean: clean deps_clean
 
-.PHONY: fix_eslint
-fix_eslint: ./node_modules ./eslint.config.js
-	npm exec --ignore-scripts --no-progress --no-color --loglevel=warn -- eslint --quiet --concurrency=auto --no-color --fix .
+.PHONY: nuke
+nuke: distclean data_reset
 
-.PHONY: fix_prettier
-fix_prettier: ./node_modules ./prettier.config.js
-	npm exec --ignore-scripts --no-progress --no-color --loglevel=warn -- prettier --log-level=warn --no-color -w .
+.PHONY: eslint_fix
+eslint_fix: ./node_modules ./package.json ./package-lock.json ./eslint.config.js
+	npm exec --ignore-scripts -- eslint --concurrency=auto --fix .
 
-.PHONY: fix_php_cs_fixer
-fix_php_cs_fixer: ./vendor ./.php-cs-fixer.php
-	composer exec --no-ansi --no-interaction --no-plugins --no-scripts -- php-cs-fixer --no-ansi --no-interaction --show-progress=none fix
+.PHONY: prettier_fix
+prettier_fix: ./node_modules ./package.json ./package-lock.json ./prettier.config.js
+	npm exec --ignore-scripts -- prettier -w .
 
-.PHONY: fix_yaml
-fix_yaml:
-	find . -type f -name "*.yml" -exec yq -i 'sort_keys(..)' {} \;
+.PHONY: php_cs_fixer_fix
+php_cs_fixer_fix: ./vendor ./composer.json ./composer.lock ./.php-cs-fixer.php
+	composer exec --no-plugins --no-scripts -- php-cs-fixer fix
 
-.PHONY: lint_eslint
-lint_eslint: ./node_modules ./eslint.config.js
-	npm exec --ignore-scripts --no-progress --no-color --loglevel=warn -- eslint --quiet --concurrency=auto --no-color .
+.PHONY: eslint_check
+eslint_check: ./node_modules ./package.json ./package-lock.json ./eslint.config.js
+	npm exec --ignore-scripts -- eslint --concurrency=auto .
 
-.PHONY: lint_prettier
-lint_prettier: ./node_modules ./prettier.config.js
-	npm exec --ignore-scripts --no-progress --no-color --loglevel=warn -- prettier --log-level=warn --no-color -c .
+.PHONY: prettier_check
+prettier_check: ./node_modules ./package.json ./package-lock.json ./prettier.config.js
+	npm exec --ignore-scripts -- prettier -c .
 
-.PHONY: lint_php_cs_fixer
-lint_php_cs_fixer: ./vendor ./.php-cs-fixer.php
-	composer exec --no-ansi --no-interaction --no-plugins --no-scripts -- php-cs-fixer --no-ansi --no-interaction --show-progress=none check
+.PHONY: php_cs_fixer_check
+php_cs_fixer_check: ./vendor ./composer.json ./composer.lock ./.php-cs-fixer.php
+	composer exec --no-plugins --no-scripts -- php-cs-fixer check
 
-.PHONY: stan_phpstan
-stan_phpstan: ./vendor ./phpstan.neon
-	composer exec --no-ansi --no-interaction --no-plugins --no-scripts -- phpstan analyse --no-ansi --no-interaction --no-progress
+.PHONY: phpstan_check
+phpstan_check: ./vendor ./composer.json ./composer.lock ./phpstan.neon
+	composer exec --no-plugins --no-scripts -- phpstan analyse
 
-.PHONY: test_phpunit
-test_phpunit: ./vendor ./phpunit.xml
-	composer exec --no-ansi --no-interaction --no-plugins --no-scripts -- phpunit --no-progress --colors=never
+.PHONY: phpunit_test
+phpunit_test: ./vendor ./phpunit.xml
+	composer exec --no-plugins --no-scripts -- phpunit
 
-.PHONY: audit_npm
-audit_npm: ./node_modules ./package.json ./package-lock.json
-	npm audit --ignore-scripts --no-progress --no-color --loglevel=warn --audit-level=critical --install-links --include=prod --include=dev --include=peer --include=optional
+.PHONY: npm_audit
+npm_audit: ./node_modules ./package.json ./package-lock.json
+	npm audit --ignore-scripts --audit-level=critical --install-links --include=prod --include=dev --include=peer --include=optional
 
-.PHONY: audit_composer
-audit_composer: ./vendor ./composer.json ./composer.lock
-	composer audit --no-ansi --no-interaction --no-plugins --no-scripts
-	composer check-platform-reqs --no-ansi --no-interaction --no-plugins --no-scripts
-	composer validate --no-ansi --no-interaction --no-plugins --no-scripts --strict --with-dependencies --check-lock
-	composer dump-autoload --no-ansi --no-interaction --no-plugins --no-scripts --optimize --strict-psr --strict-ambiguous
+.PHONY: composer_audit
+composer_audit: ./vendor ./composer.json ./composer.lock
+	composer audit --no-plugins --no-scripts
+	composer check-platform-reqs --no-plugins --no-scripts
+	composer validate --no-plugins --no-scripts --strict --with-dependencies --check-lock
 
-.PHONY: install_npm
-install_npm: ./package.json ./package-lock.json
-	npm install --ignore-scripts --no-progress --no-color --loglevel=warn --install-links --include=prod --include=dev --include=peer --include=optional
+.PHONY: composer_autoload_check
+composer_autoload_check: ./vendor ./composer.json ./composer.lock
+	composer dump-autoload --no-plugins --no-scripts --optimize --strict-psr --strict-ambiguous --dry-run
 
-.PHONY: install_composer
-install_composer: ./composer.json ./composer.lock
-	composer install --no-ansi --no-interaction --no-plugins --no-scripts --no-autoloader
-	composer dump-autoload --no-ansi --no-interaction --no-plugins --no-scripts --optimize --strict-psr --strict-ambiguous
+.PHONY: npm_install
+npm_install: ./package.json ./package-lock.json
+	npm ci --ignore-scripts --install-links --include=prod --include=dev --include=peer --include=optional
 
-.PHONY: update_npm
-update_npm: ./package.json
+.PHONY: composer_install
+composer_install: ./composer.json ./composer.lock
+	composer install --no-plugins --no-scripts --no-autoloader
+	composer dump-autoload --no-plugins --no-scripts --optimize --strict-psr --strict-ambiguous
+
+.PHONY: npm_update
+npm_update: ./package.json
 	rm -rf ./node_modules
-	rm -rf ./package-lock.json
-	npm update --ignore-scripts --no-progress --no-color --loglevel=warn --install-links --include=prod --include=dev --include=peer --include=optional
+	npm update --ignore-scripts --install-links --include=prod --include=dev --include=peer --include=optional
 
-.PHONY: update_composer
-update_composer: ./composer.json
+.PHONY: composer_update
+composer_update: ./composer.json
 	rm -rf ./vendor
-	rm -rf ./composer.lock
-	composer update --no-ansi --no-interaction --no-plugins --no-scripts --no-autoloader --with-all-dependencies
-	composer dump-autoload --no-ansi --no-interaction --no-plugins --no-scripts --optimize --strict-psr --strict-ambiguous
+	composer update --no-plugins --no-scripts --no-autoloader --with-all-dependencies
+	composer dump-autoload --no-plugins --no-scripts --optimize --strict-psr --strict-ambiguous
 
 .PHONY: postcreate
-postcreate: install migrate
+postcreate: deps_install migrate
 
 .PHONY: start serve server dev
 start serve server dev: ./vendor ./index.php ./composer.json ./composer.lock
@@ -133,42 +159,65 @@ start serve server dev: ./vendor ./index.php ./composer.json ./composer.lock
 migrate: ./vendor ./bin/migrate_up.php ./composer.json ./composer.lock
 	php ./bin/migrate_up.php
 
-.PHONY: image
-image:
+.PHONY: compose_push
+compose_push:
 	docker compose -f ./docker-compose.yml -f ./docker-compose-swarm.yml build --pull --push
 
-.PHONY: deploy
-deploy:
-	docker stack deploy -c ./docker-compose.yml -c ./docker-compose-swarm.yml --with-registry-auth --prune --detach=false --resolve-image=always ${CI_PROJECT_PATH_SLUG:-php-template-mezzio}
+.PHONY: swarm_deploy
+swarm_deploy:
+	docker stack deploy -c ./docker-compose.yml -c ./docker-compose-swarm.yml --with-registry-auth --prune --detach=false --resolve-image=always $${CI_PROJECT_PATH_SLUG:-php-template-mezzio}
 
-.PHONY: up
-up:
+.PHONY: compose_up
+compose_up:
 	docker compose -f ./docker-compose.yml up --build --remove-orphans --always-recreate-deps --force-recreate --pull=always --renew-anon-volumes
 
-.PHONY: down
-down:
-	docker compose down --volumes --remove-orphans --rmi=local
-
-.PHONY: password
-password:
-	@tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 32
-
-.PHONY: secret
-secret:
-	@tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 64
+.PHONY: compose_stop
+compose_stop:
+	docker compose -f ./docker-compose.yml stop
 
 .PHONY: devcontainer
 devcontainer:
-	devcontainer up
-	devcontainer exec /bin/bash
-	docker compose -f ./docker-compose.yml -f ./.devcontainer/docker-compose.yml down --remove-orphans
+	devcontainer up --workspace-folder .
+	devcontainer exec --workspace-folder . /bin/bash
+
+.PHONY: status
+status:
+	docker container ls --all --filter "$(DEVCONTAINER_FILTER)"
+	docker volume ls --filter "$(DEVCONTAINER_FILTER)"
+	docker network ls --filter "$(DEVCONTAINER_FILTER)"
+
+.PHONY: stop
+stop:
+	docker container ls --quiet --filter "$(DEVCONTAINER_FILTER)" | while IFS= read -r container; do docker container stop "$$container"; done
+
+.PHONY: restart
+restart:
+	docker container ls --all --quiet --filter "$(DEVCONTAINER_FILTER)" | while IFS= read -r container; do docker container restart "$$container"; done
+
+.PHONY: down
+down: stop
+	docker container ls --all --quiet --filter "$(DEVCONTAINER_FILTER)" | while IFS= read -r container; do docker container rm --force --volumes "$$container"; done
+	docker network ls --quiet --filter "$(DEVCONTAINER_FILTER)" | while IFS= read -r network; do docker network rm "$$network"; done
+
+.PHONY: rebuild
+rebuild: down
+	devcontainer up --workspace-folder .
+
+.PHONY: rebuild_no_cache
+rebuild_no_cache: down
+	devcontainer up --workspace-folder . --build-no-cache
+
+.PHONY: data_reset
+data_reset: down
+	docker volume ls --quiet --filter "$(DEVCONTAINER_FILTER)" | while IFS= read -r volume; do docker volume rm "$$volume"; done
 
 # Dependencies
+
 ./.phpunit.coverage/html:
-	${MAKE} test_phpunit
+	${MAKE} phpunit_test
 
-./composer.lock ./vendor: ./composer.json
-	${MAKE} update_composer
+./vendor: ./composer.json ./composer.lock
+	${MAKE} composer_install
 
-./package-lock.json ./node_modules: ./package.json
-	${MAKE} update_npm
+./node_modules: ./package.json ./package-lock.json
+	${MAKE} npm_install

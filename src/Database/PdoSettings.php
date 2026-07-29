@@ -31,26 +31,26 @@ use function mb_trim;
  */
 final readonly class PdoSettings implements PdoSettingsInterface
 {
-    #[Override]
-    public readonly string $dbname;
+    #[Override()]
+    public string $dbname;
 
-    #[Override]
-    public readonly string $host;
+    #[Override()]
+    public string $host;
 
-    #[Override]
-    public readonly array $options;
+    #[Override()]
+    public array $options;
 
-    #[Override]
-    public readonly string $password;
+    #[Override()]
+    public string $password;
 
-    #[Override]
-    public readonly string $port;
+    #[Override()]
+    public string $port;
 
-    #[Override]
-    public readonly string $socket;
+    #[Override()]
+    public string $socket;
 
-    #[Override]
-    public readonly string $username;
+    #[Override()]
+    public string $username;
 
     /**
      * @param array<mixed, mixed> $options
@@ -66,7 +66,7 @@ final readonly class PdoSettings implements PdoSettingsInterface
         $this->options = $options;
     }
 
-    #[NoDiscard]
+    #[NoDiscard()]
     public static function inject(ContainerInterface $container): self
     {
         $config = $container->get('config');
@@ -97,7 +97,7 @@ final readonly class PdoSettings implements PdoSettingsInterface
         return new self($pdo['host'], $pdo['port'], $pdo['dbname'], $pdo['socket'], $pdo['username'], $password, $pdo['options']);
     }
 
-    #[Override]
+    #[Override()]
     public function clone(array $with): static
     {
         return clone ($this, $with);

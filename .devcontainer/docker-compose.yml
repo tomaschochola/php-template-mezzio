@@ -1,3 +1,4 @@
+name: 'php-template-mezzio-devcontainer'
 networks:
   devcontainer:
     internal: false

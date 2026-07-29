@@ -28,14 +28,14 @@ use function assert;
  */
 final readonly class Migrator
 {
-    private readonly PDO $pdo;
+    private PDO $pdo;
 
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
     }
 
-    #[NoDiscard]
+    #[NoDiscard()]
     public static function inject(ContainerInterface $container): self
     {
         $pdo = $container->get(PDO::class);

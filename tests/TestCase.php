@@ -37,15 +37,34 @@ use function range;
 
 /**
  * @internal
+ *
  * @no-named-arguments
  */
 abstract class TestCase extends PHPUnitFrameworkTestCase
 {
     private string $id = '';
 
-    private Kernel|null $kernel = null;
+    private Kernel | null $kernel = null;
 
     private bool $migrated = false;
+
+    #[Override()]
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->id = (new Randomizer())->getBytesFromString(implode('', range('a', 'z') + range('A', 'Z') + range('0', '9')), 32);
+    }
+
+    #[Override()]
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        if ($this->migrated) {
+            $this->pdo()->exec("DROP DATABASE IF EXISTS `{$this->id}`");
+        }
+    }
 
     protected function app(): Application
     {
@@ -60,7 +79,7 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
     /**
      * @param array<mixed, mixed> $params
      */
-    protected function createServerRequest(string $method, UriInterface|string $uri, array $params = []): ServerRequestInterface
+    protected function createServerRequest(string $method, UriInterface | string $uri, array $params = []): ServerRequestInterface
     {
         return $this->resolve(ServerRequestFactoryInterface::class)->createServerRequest($method, $uri, $params);
     }
@@ -82,7 +101,6 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
     protected function migrate(): void
     {
         $this->migrated = true;
-
         $pdo = $this->pdo();
 
         $pdo->exec("DROP DATABASE IF EXISTS `{$this->id}`");
@@ -124,23 +142,5 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
         assert($resolved instanceof $class);
 
         return $resolved;
-    }
-
-    #[Override]
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->id = (new Randomizer())->getBytesFromString(implode('', range('a', 'z') + range('A', 'Z') + range('0', '9')), 32);
-    }
-
-    #[Override]
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        if ($this->migrated) {
-            $this->pdo()->exec("DROP DATABASE IF EXISTS `{$this->id}`");
-        }
     }
 }

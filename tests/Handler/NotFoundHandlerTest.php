@@ -22,13 +22,14 @@ use Tests\TestCase;
 
 /**
  * @internal
+ *
  * @no-named-arguments
  */
-#[CoversNothing]
-#[Small]
+#[CoversNothing()]
+#[Small()]
 final class NotFoundHandlerTest extends TestCase
 {
-    #[Test]
+    #[Test()]
     public function test(): void
     {
         $response = $this->handle($this->createServerRequest('GET', '/not-found'));

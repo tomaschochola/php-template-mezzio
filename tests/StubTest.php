@@ -22,14 +22,15 @@ use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
+ *
  * @no-named-arguments
  */
-#[CoversNothing]
-#[Small]
+#[CoversNothing()]
+#[Small()]
 final class StubTest extends TestCase
 {
-    #[DoesNotPerformAssertions]
-    #[Test]
+    #[DoesNotPerformAssertions()]
+    #[Test()]
     public function test(): void
     {
         $this->migrate();

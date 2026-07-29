@@ -10,12 +10,9 @@
  * @see {@link https://github.com/sponsors/tomaschochola} GitHub Sponsors
  */
 
-import { PrettierConfig } from '@tomaschochola/ts-tooling-prettier-config';
+import { PrettierConfigBuilder } from '@tomaschochola/tooling-prettier';
 
 // eslint-disable-next-line no-restricted-exports
-export default PrettierConfig.composeConfig(
-  PrettierConfig.configBase(),
-  PrettierConfig.pluginPug(),
-  PrettierConfig.pluginRuby(),
-  PrettierConfig.pluginXml(),
-);
+export default new PrettierConfigBuilder()
+  .addXmlPlugin()
+  .toConfig();

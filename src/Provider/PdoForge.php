@@ -31,14 +31,14 @@ use function implode;
  */
 final readonly class PdoForge
 {
-    private readonly PdoSettingsInterface $config;
+    private PdoSettingsInterface $config;
 
     public function __construct(PdoSettingsInterface $config)
     {
         $this->config = $config;
     }
 
-    #[NoDiscard]
+    #[NoDiscard()]
     public static function inject(ContainerInterface $container): self
     {
         $config = $container->get(PdoSettingsInterface::class);

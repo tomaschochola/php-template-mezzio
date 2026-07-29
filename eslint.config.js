@@ -10,10 +10,18 @@
  * @see {@link https://github.com/sponsors/tomaschochola} GitHub Sponsors
  */
 
-import { ESLintConfig } from '@tomaschochola/ts-tooling-eslint-config';
+import { ESLintConfigBuilder, filePatterns } from '@tomaschochola/tooling-eslint';
 
 // eslint-disable-next-line no-restricted-exports
-export default ESLintConfig.composeConfig(
-  ESLintConfig.presetNode({ presetDefaultsOptions: { configNodeModulesIgnores: false } }),
-  ESLintConfig.configIgnores(['node_modules', 'vendor', '.phpunit.cache', '.phpunit.coverage', '.phpunit.result.cache', '.php-cs-fixer.cache']),
-);
+export default new ESLintConfigBuilder()
+  .addNodeGlobals()
+  .addGlobalIgnores(filePatterns.defaultIgnorePatterns)
+  .addGlobalIgnores(['node_modules', 'vendor', '.phpunit.cache', '.phpunit.coverage', '.phpunit.result.cache', '.php-cs-fixer.cache'])
+  .addJavaScriptRecommendedRules()
+  .addJavaScriptPolicyRules()
+  .addStylisticCustomizedRules()
+  .addStylisticPolicyRules()
+  .disableStylisticLegacyRules()
+  .addSonarJsRecommendedRules()
+  .addSonarJsPolicyOverrides()
+  .toConfig();

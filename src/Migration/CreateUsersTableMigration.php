@@ -25,21 +25,23 @@ use Src\Database\MigrationInterface;
  */
 final readonly class CreateUsersTableMigration implements MigrationInterface
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
-    #[NoDiscard]
+    #[NoDiscard()]
     public static function inject(ContainerInterface $container): self
     {
         return new self();
     }
 
-    #[Override]
+    #[Override()]
     public function selector(): string
     {
         return self::class;
     }
 
-    #[Override]
+    #[Override()]
     public function up(): iterable
     {
         yield <<<'SQL'

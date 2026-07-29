@@ -33,7 +33,7 @@ final readonly class ApcuConfigCache
     /**
      * @return array<mixed, mixed>|null
      */
-    public function get(): array|null
+    public function get(): array | null
     {
         if (!self::enabled()) {
             return null;

@@ -19,7 +19,7 @@ use Laminas\ConfigAggregator\ConfigAggregator;
 return (new ConfigAggregator([
     new ArrayProvider([
         'debug' => true,
-        PDO::class => [
+        \PDO::class => [
             'dbname' => '',
             'password' => \getenv('MYSQL_ROOT_PASSWORD_FILE'),
             'username' => 'root',
