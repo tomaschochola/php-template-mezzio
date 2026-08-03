@@ -1,26 +1,21 @@
 {
-  "containerUser": "devcontainer",
   "customizations": {
     "vscode": {
-      "extensions": ["DEVSENSE.phptools-vscode", "EditorConfig.EditorConfig", "Tyriar.sort-lines", "docker.docker"],
+      "extensions": ["EditorConfig.EditorConfig", "DEVSENSE.phptools-vscode"],
       "settings": {
-        "editor.codeActionsOnSave": {
-          "source.addMissingImports.ts": "explicit",
-          "source.fixAll.ts": "explicit",
-          "source.organizeImports": "explicit",
-          "source.removeUnused.ts": "explicit",
-          "source.sort.json": "explicit"
-        },
         "files.insertFinalNewline": true,
         "files.trimFinalNewlines": true,
         "files.trimTrailingWhitespace": true
       }
     }
   },
-  "dockerComposeFile": ["../docker-compose.yml", "./docker-compose.yml"],
-  "init": true,
-  "postCreateCommand": "make postcreate",
+  "dockerComposeFile": "docker-compose.yml",
+  "overrideCommand": false,
+  "postCreateCommand": ["make", "postcreate"],
   "remoteUser": "devcontainer",
   "service": "devcontainer",
-  "workspaceFolder": "/var/www/html"
+  "shutdownAction": "stopCompose",
+  "updateRemoteUserUID": true,
+  "waitFor": "postCreateCommand",
+  "workspaceFolder": "/workspace"
 }
