@@ -23,7 +23,7 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stratigility\Middleware\ErrorHandler;
 use LogicException;
 use Mezzio\Application;
-use Mezzio\ConfigProvider as MezioConfigProvider;
+use Mezzio\ConfigProvider as MezzioConfigProvider;
 use Mezzio\Handler\NotFoundHandler;
 use Mezzio\MiddlewareFactory;
 use Mezzio\Router\ConfigProvider as MezzioRouterConfigProvider;
@@ -95,7 +95,7 @@ final readonly class Bootstrapper
         $config = (new ConfigAggregator([
             ConfigManifest::class,
             LaminasDiactorosConfigProvider::class,
-            MezioConfigProvider::class,
+            MezzioConfigProvider::class,
             MezzioRouterConfigProvider::class,
             MezzioRouterFastRouteRouterConfigProvider::class,
             new PhpFileProvider(__DIR__ . '/../../config/global.php'),
