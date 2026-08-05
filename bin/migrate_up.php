@@ -24,7 +24,4 @@ $kernel = Bootstrapper::bootstrap();
 $migrator = $kernel->container->get(Migrator::class);
 $migrations = $kernel->container->get(Migrations::class);
 
-\assert($migrator instanceof Migrator);
-\assert($migrations instanceof Migrations);
-
 $migrator->forward($migrations);

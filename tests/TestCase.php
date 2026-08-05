@@ -109,8 +109,6 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
         $container = $this->container();
         $config = $container->get(PdoSettingsInterface::class);
 
-        assert($config instanceof PdoSettingsInterface);
-
         $override = $config->clone([
             'dbname' => $this->id,
         ]);

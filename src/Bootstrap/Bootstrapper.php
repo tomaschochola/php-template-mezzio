@@ -40,21 +40,19 @@ use function is_array;
 use function is_string;
 
 /**
+ * @phpstan-import-type ServiceManagerConfiguration from ServiceManager
+ *
  * @no-named-arguments
  */
 final readonly class Bootstrapper
 {
     public static function bootstrap(): Kernel
     {
-        /**
-         * @phpstan-ignore-next-line argument.type
-         */
-        $container = new ServiceManager(self::cached());
+        /** @var ServiceManagerConfiguration $config */
+        $config = self::cached();
+        $container = new ServiceManager($config);
         $app = $container->get(Application::class);
         $factory = $container->get(MiddlewareFactory::class);
-
-        assert($app instanceof Application);
-        assert($factory instanceof MiddlewareFactory);
 
         self::pipeline($app, $factory, $container);
         self::routes($app, $factory, $container);
