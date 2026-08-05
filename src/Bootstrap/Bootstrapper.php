@@ -48,7 +48,9 @@ final readonly class Bootstrapper
 {
     public static function bootstrap(): Kernel
     {
-        /** @var ServiceManagerConfiguration $config */
+        /**
+         * @var ServiceManagerConfiguration $config
+         */
         $config = self::cached();
         $container = new ServiceManager($config);
         $app = $container->get(Application::class);
