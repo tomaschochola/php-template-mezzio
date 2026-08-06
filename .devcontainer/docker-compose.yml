@@ -46,9 +46,10 @@ services:
       - 'mysql'
       - 'valkey'
     ports:
-      - host_ip: '127.0.0.1'
-        published: '${DEVCONTAINER_HTTP_PORT:-8000}'
-        target: 8000
+      - '61000:61000'
+      - '127.0.0.1:61001-61002:61001-61002'
+      - '61003:61003'
+      - '127.0.0.1:61004-61009:61004-61009'
     secrets:
       - 'db_password'
       - 'db_root_password'
