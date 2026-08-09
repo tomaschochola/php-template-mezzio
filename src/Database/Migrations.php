@@ -13,13 +13,13 @@
 
 declare(strict_types=1);
 
-namespace Src\Database;
+namespace TomasChochola\Template\Mezzio\Database;
 
 use IteratorAggregate;
 use NoDiscard;
 use Override;
 use Psr\Container\ContainerInterface;
-use Src\Migration\CreateUsersTableMigration;
+use TomasChochola\Template\Mezzio\Migration\CreateUsersTableMigration;
 use Traversable;
 
 use function assert;

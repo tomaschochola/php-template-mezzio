@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace Src\Bootstrap;
+namespace TomasChochola\Template\Mezzio\Bootstrap;
 
 use Laminas\ConfigAggregator\ArrayProvider;
 use Laminas\ConfigAggregator\ConfigAggregator;
@@ -32,7 +32,7 @@ use Mezzio\Router\Middleware\DispatchMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
 use Psr\Container\ContainerInterface;
-use Src\Handler\PingRequestHandler;
+use TomasChochola\Template\Mezzio\Handler\PingRequestHandler;
 
 use function assert;
 use function getenv;

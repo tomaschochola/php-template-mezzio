@@ -6,7 +6,7 @@
   },
   "bugs": {
     "email": "tomaschochola@tomaschochola.cz",
-    "url": "https://github.com/tomaschochola/php-template-mezzio/issues"
+    "url": "https://github.com/tomaschochola/template-php-mezzio/issues"
   },
   "contributors": [
     {
@@ -25,7 +25,7 @@
     "type": "github",
     "url": "https://github.com/sponsors/tomaschochola"
   },
-  "homepage": "https://github.com/tomaschochola/php-template-mezzio",
+  "homepage": "https://github.com/tomaschochola/template-php-mezzio",
   "keywords": [
     "tomaschochola",
     "TomasChochola",
@@ -37,11 +37,11 @@
     "template"
   ],
   "license": "CC-BY-ND-4.0",
-  "name": "@tomaschochola/php-template-mezzio",
+  "name": "@tomaschochola/template-php-mezzio",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomaschochola/php-template-mezzio.git"
+    "url": "git+https://github.com/tomaschochola/template-php-mezzio.git"
   },
   "type": "module",
   "version": "0.0.0"

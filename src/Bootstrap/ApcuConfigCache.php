@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace Src\Bootstrap;
+namespace TomasChochola\Template\Mezzio\Bootstrap;
 
 use UnexpectedValueException;
 

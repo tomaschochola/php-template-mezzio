@@ -13,9 +13,9 @@
 
 declare(strict_types=1);
 
-namespace Src;
+namespace TomasChochola\Template\Mezzio;
 
-use Src\Bootstrap\Bootstrapper;
+use TomasChochola\Template\Mezzio\Bootstrap\Bootstrapper;
 
 /**
  * @no-named-arguments

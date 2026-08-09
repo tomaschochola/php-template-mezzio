@@ -13,12 +13,12 @@
 
 declare(strict_types=1);
 
-namespace Src\Migration;
+namespace TomasChochola\Template\Mezzio\Migration;
 
 use NoDiscard;
 use Override;
 use Psr\Container\ContainerInterface;
-use Src\Database\MigrationInterface;
+use TomasChochola\Template\Mezzio\Database\MigrationInterface;
 
 /**
  * @no-named-arguments

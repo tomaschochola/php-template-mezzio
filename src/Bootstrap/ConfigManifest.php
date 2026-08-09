@@ -13,16 +13,16 @@
 
 declare(strict_types=1);
 
-namespace Src\Bootstrap;
+namespace TomasChochola\Template\Mezzio\Bootstrap;
 
 use PDO;
-use Src\Database\Migrations;
-use Src\Database\Migrator;
-use Src\Database\PdoSettings;
-use Src\Database\PdoSettingsInterface;
-use Src\Handler\PingRequestHandler;
-use Src\Migration\CreateUsersTableMigration;
-use Src\Provider\PdoForge;
+use TomasChochola\Template\Mezzio\Database\Migrations;
+use TomasChochola\Template\Mezzio\Database\Migrator;
+use TomasChochola\Template\Mezzio\Database\PdoSettings;
+use TomasChochola\Template\Mezzio\Database\PdoSettingsInterface;
+use TomasChochola\Template\Mezzio\Handler\PingRequestHandler;
+use TomasChochola\Template\Mezzio\Migration\CreateUsersTableMigration;
+use TomasChochola\Template\Mezzio\Provider\PdoForge;
 
 /**
  * @no-named-arguments

@@ -13,13 +13,13 @@
 
 declare(strict_types=1);
 
-namespace Src\Provider;
+namespace TomasChochola\Template\Mezzio\Provider;
 
 use NoDiscard;
 use PDO;
 use Pdo\Mysql;
 use Psr\Container\ContainerInterface;
-use Src\Database\PdoSettingsInterface;
+use TomasChochola\Template\Mezzio\Database\PdoSettingsInterface;
 
 use function array_filter;
 use function array_replace;

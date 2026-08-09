@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Src\\": "src/"
+      "TomasChochola\\Template\\Mezzio\\": "src/"
     }
   },
   "autoload-dev": {
@@ -43,7 +43,7 @@
       "url": "https://github.com/sponsors/tomaschochola"
     }
   ],
-  "homepage": "https://github.com/tomaschochola/php-template-mezzio",
+  "homepage": "https://github.com/tomaschochola/template-php-mezzio",
   "keywords": [
     "tomaschochola",
     "TomasChochola",
@@ -55,7 +55,7 @@
     "template"
   ],
   "license": "CC-BY-ND-4.0",
-  "name": "tomaschochola/php-template-mezzio",
+  "name": "tomaschochola/template-php-mezzio",
   "prefer-stable": true,
   "repositories": [
     {
@@ -94,8 +94,8 @@
   },
   "support": {
     "email": "tomaschochola@tomaschochola.cz",
-    "issues": "https://github.com/tomaschochola/php-template-mezzio/issues",
-    "source": "https://github.com/tomaschochola/php-template-mezzio.git"
+    "issues": "https://github.com/tomaschochola/template-php-mezzio/issues",
+    "source": "https://github.com/tomaschochola/template-php-mezzio.git"
   },
   "type": "project"
 }

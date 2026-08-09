@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 
-namespace Src\Handler;
+namespace TomasChochola\Template\Mezzio\Handler;
 
 use Fig\Http\Message\RequestMethodInterface;
 use NoDiscard;

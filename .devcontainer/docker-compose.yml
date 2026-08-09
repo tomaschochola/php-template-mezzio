@@ -1,4 +1,4 @@
-name: 'php-template-mezzio-devcontainer'
+name: 'template-php-mezzio-devcontainer'
 
 networks:
   devcontainer:

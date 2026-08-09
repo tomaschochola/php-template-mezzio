@@ -25,11 +25,11 @@ use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
 use Random\Randomizer;
-use Src\Bootstrap\Bootstrapper;
-use Src\Bootstrap\Kernel;
-use Src\Database\Migrations;
-use Src\Database\Migrator;
-use Src\Database\PdoSettingsInterface;
+use TomasChochola\Template\Mezzio\Bootstrap\Bootstrapper;
+use TomasChochola\Template\Mezzio\Bootstrap\Kernel;
+use TomasChochola\Template\Mezzio\Database\Migrations;
+use TomasChochola\Template\Mezzio\Database\Migrator;
+use TomasChochola\Template\Mezzio\Database\PdoSettingsInterface;
 
 use function assert;
 use function implode;

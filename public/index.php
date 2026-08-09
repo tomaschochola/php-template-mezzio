@@ -15,6 +15,6 @@ declare(strict_types=1);
 
 require_once \dirname(__DIR__) . '/vendor/autoload.php';
 
-use Src\Main;
+use TomasChochola\Template\Mezzio\Main;
 
 new Main()();
