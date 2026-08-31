@@ -1,101 +1,101 @@
 {
-  "authors": [
-    {
-      "email": "tomaschochola@tomaschochola.cz",
-      "homepage": "https://github.com/tomaschochola",
-      "name": "Tomáš Chochola",
-      "role": "Author"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "TomasChochola\\Template\\Mezzio\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
-    }
-  },
-  "config": {
-    "allow-plugins": false,
-    "platform-check": true,
-    "policy": {
-      "abandoned": {
-        "audit": "fail",
-        "block": true
-      },
-      "advisories": {
-        "audit": "fail",
-        "block": true
-      },
-      "malware": {
-        "audit": "fail",
-        "block": true
-      }
+    "authors": [
+        {
+            "email": "tomaschochola@tomaschochola.cz",
+            "homepage": "https://github.com/tomaschochola",
+            "name": "Tomáš Chochola",
+            "role": "Author"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TomasChochola\\Template\\Mezzio\\": "src/"
+        }
     },
-    "sort-packages": true
-  },
-  "description": "Mezzio application template with APCu configuration caching, MySQL migrations, and a health endpoint.",
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/tomaschochola"
-    }
-  ],
-  "homepage": "https://github.com/tomaschochola/template-php-mezzio",
-  "keywords": [
-    "tomaschochola",
-    "TomasChochola",
-    "Tomas Chochola",
-    "Tomáš Chochola",
-    "application",
-    "mezzio",
-    "middleware",
-    "template"
-  ],
-  "license": "CC-BY-ND-4.0",
-  "name": "tomaschochola/template-php-mezzio",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "no-api": true,
-      "type": "vcs",
-      "url": "https://github.com/tomaschochola/tooling-php-cs-fixer.git"
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
-    {
-      "no-api": true,
-      "type": "vcs",
-      "url": "https://github.com/tomaschochola/tooling-phpstan.git"
-    }
-  ],
-  "require": {
-    "ext-apcu": "*",
-    "ext-mbstring": "*",
-    "ext-pdo": "*",
-    "ext-pdo_mysql": "*",
-    "ext-redis": "*",
-    "laminas/laminas-config-aggregator": "^1.19",
-    "laminas/laminas-diactoros": "^3.8",
-    "laminas/laminas-servicemanager": "^4.5",
-    "mezzio/mezzio": "^3.27",
-    "mezzio/mezzio-fastroute": "^3.14",
-    "php": "^8.5.0"
-  },
-  "require-dev": {
-    "ext-intl": "*",
-    "ext-pcntl": "*",
-    "ext-xdebug": "*",
-    "ext-zip": "*",
-    "phpunit/phpunit": "^13.0",
-    "roave/security-advisories": "dev-latest",
-    "tomaschochola/tooling-php-cs-fixer": "dev-main",
-    "tomaschochola/tooling-phpstan": "dev-main"
-  },
-  "support": {
-    "email": "tomaschochola@tomaschochola.cz",
-    "issues": "https://github.com/tomaschochola/template-php-mezzio/issues",
-    "source": "https://github.com/tomaschochola/template-php-mezzio.git"
-  },
-  "type": "project"
+    "config": {
+        "allow-plugins": false,
+        "platform-check": true,
+        "policy": {
+            "abandoned": {
+                "audit": "fail",
+                "block": true
+            },
+            "advisories": {
+                "audit": "fail",
+                "block": true
+            },
+            "malware": {
+                "audit": "fail",
+                "block": true
+            }
+        },
+        "sort-packages": true
+    },
+    "description": "Mezzio application template with APCu configuration caching, MySQL migrations, and a health endpoint.",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/tomaschochola"
+        }
+    ],
+    "homepage": "https://github.com/tomaschochola/template-php-mezzio",
+    "keywords": [
+        "tomaschochola",
+        "TomasChochola",
+        "Tomas Chochola",
+        "Tomáš Chochola",
+        "application",
+        "mezzio",
+        "middleware",
+        "template"
+    ],
+    "license": "CC-BY-ND-4.0",
+    "name": "tomaschochola/template-php-mezzio",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "no-api": true,
+            "type": "vcs",
+            "url": "https://github.com/tomaschochola/tooling-php-cs-fixer.git"
+        },
+        {
+            "no-api": true,
+            "type": "vcs",
+            "url": "https://github.com/tomaschochola/tooling-phpstan.git"
+        }
+    ],
+    "require": {
+        "ext-apcu": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-redis": "*",
+        "laminas/laminas-config-aggregator": "^1.19",
+        "laminas/laminas-diactoros": "^3.8",
+        "laminas/laminas-servicemanager": "^4.5",
+        "mezzio/mezzio": "^3.27",
+        "mezzio/mezzio-fastroute": "^3.14",
+        "php": "^8.5.0"
+    },
+    "require-dev": {
+        "ext-intl": "*",
+        "ext-pcntl": "*",
+        "ext-xdebug": "*",
+        "ext-zip": "*",
+        "phpunit/phpunit": "^13.0",
+        "roave/security-advisories": "dev-latest",
+        "tomaschochola/tooling-php-cs-fixer": "dev-main",
+        "tomaschochola/tooling-phpstan": "dev-main"
+    },
+    "support": {
+        "email": "tomaschochola@tomaschochola.cz",
+        "issues": "https://github.com/tomaschochola/template-php-mezzio/issues",
+        "source": "https://github.com/tomaschochola/template-php-mezzio.git"
+    },
+    "type": "project"
 }
